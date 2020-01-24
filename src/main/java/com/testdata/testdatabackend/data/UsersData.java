@@ -1,5 +1,6 @@
 package com.testdata.testdatabackend.data;
 
+import com.testdata.testdatabackend.models.Auth;
 import com.testdata.testdatabackend.models.User;
 import lombok.Getter;
 
@@ -51,5 +52,16 @@ public class UsersData {
                 .filter(user -> user.getId().equals(id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public Auth authenticate(String email, String password) {
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
+                .findFirst()
+                .map(user -> Auth.builder()
+                        .user(user)
+                        .token((user.getId() + user.getFirstName() + user.getLastName()).toLowerCase())
+                        .build())
+                .orElse(new Auth());
     }
 }

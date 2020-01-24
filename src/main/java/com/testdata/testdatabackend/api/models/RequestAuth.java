@@ -1,6 +1,5 @@
-package com.testdata.testdatabackend.models;
+package com.testdata.testdatabackend.api.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,12 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    private String id;
-    private String firstName;
-    private String lastName;
+public class RequestAuth {
     private String email;
-    @JsonIgnore
     private String password;
-
 }

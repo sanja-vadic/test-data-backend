@@ -1,10 +1,10 @@
 package com.testdata.testdatabackend.api;
 
+import com.testdata.testdatabackend.api.models.RequestAuth;
 import com.testdata.testdatabackend.data.UsersData;
+import com.testdata.testdatabackend.models.Auth;
 import com.testdata.testdatabackend.models.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +20,10 @@ public class UserController {
     @GetMapping("/user")
     public List<User> getAll() {
         return usersData.getUsers();
+    }
+
+    @PostMapping("/user/auth")
+    public Auth authenticate(@RequestBody RequestAuth requestAuth) {
+        return usersData.authenticate(requestAuth.getEmail(), requestAuth.getPassword());
     }
 }
